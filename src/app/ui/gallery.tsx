@@ -2,7 +2,7 @@
 import styles from "@/app/ui/styles/gallery.module.scss";
 import Image from "next/image";
 import type { GalleryProps } from "@/app/lib/types";
-import { showImage } from "@/app/lib/galleryLogic";
+import { showImage, shimmer, toBase64 } from "@/app/lib/galleryLogic";
 
 export default function Gallery(props: GalleryProps) {
   const images = props.images;
@@ -25,6 +25,9 @@ export default function Gallery(props: GalleryProps) {
                 height: "auto",
               }}
               quality={20}
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
               onClick={() => {
                 showImage(image.id, props);
               }}
@@ -47,6 +50,9 @@ export default function Gallery(props: GalleryProps) {
                 height: "auto",
               }}
               quality={20}
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
               onClick={() => {
                 showImage(image.id, props);
               }}
@@ -69,6 +75,9 @@ export default function Gallery(props: GalleryProps) {
                 height: "auto",
               }}
               quality={20}
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
               onClick={() => {
                 showImage(image.id, props);
               }}
