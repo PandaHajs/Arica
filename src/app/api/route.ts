@@ -75,8 +75,8 @@ const photos = [
     id: "11",
     src: "/11.jpg",
     alt: "test",
-    width: "1228",
-    height: "690",
+    width: "1280",
+    height: "720",
   },
   {
     id: "12",
@@ -96,8 +96,8 @@ const photos = [
     id: "14",
     src: "/14.jpg",
     alt: "test",
-    width: "1280",
-    height: "720",
+    width: "3955",
+    height: "5932",
   },
   {
     id: "15",
@@ -187,8 +187,8 @@ const photos = [
     id: "27",
     src: "/27.jpg",
     alt: "test",
-    width: "4000",
-    height: "6000",
+    width: "1280",
+    height: "720",
   },
   {
     id: "28",
@@ -201,8 +201,15 @@ const photos = [
     id: "29",
     src: "/29.jpg",
     alt: "test",
-    width: "3955",
-    height: "5932",
+    width: "4000",
+    height: "6000",
+  },
+  {
+    id: "30",
+    src: "/30.jpg",
+    alt: "test",
+    width: "1228",
+    height: "690",
   },
 ];
 
