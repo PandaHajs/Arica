@@ -17,6 +17,7 @@ export function showImage(id: string, props: GalleryProps) {
           height: "auto",
         }}
         quality={40}
+        priority={true}
       />
     );
     props.setBlur(true);
