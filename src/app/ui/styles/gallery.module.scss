@@ -1,0 +1,16 @@
+.line {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  align-items: center;
+  > img {
+    padding: 10px;
+    cursor: pointer;
+  }
+}
+
+.gallery {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: row;
+}
