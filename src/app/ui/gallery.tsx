@@ -15,6 +15,7 @@ export default function Gallery(props: GalleryProps) {
           .map((image) => (
             <Image
               key={image.id}
+              priority={parseInt(image.id) <= 3 ? true : false}
               src={image.src}
               alt={image.alt}
               width={image.width}
@@ -23,6 +24,7 @@ export default function Gallery(props: GalleryProps) {
                 width: "100%",
                 height: "auto",
               }}
+              quality={20}
               onClick={() => {
                 showImage(image.id, props);
               }}
@@ -37,12 +39,14 @@ export default function Gallery(props: GalleryProps) {
               key={image.id}
               src={image.src}
               alt={image.alt}
+              priority={parseInt(image.id) <= 3 ? true : false}
               width={image.width}
               height={image.height}
               style={{
                 width: "100%",
                 height: "auto",
               }}
+              quality={20}
               onClick={() => {
                 showImage(image.id, props);
               }}
@@ -57,12 +61,14 @@ export default function Gallery(props: GalleryProps) {
               key={image.id}
               src={image.src}
               alt={image.alt}
+              priority={parseInt(image.id) <= 3 ? true : false}
               width={image.width}
               height={image.height}
               style={{
                 width: "100%",
                 height: "auto",
               }}
+              quality={20}
               onClick={() => {
                 showImage(image.id, props);
               }}
