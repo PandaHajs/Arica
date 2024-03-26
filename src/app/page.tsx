@@ -14,13 +14,12 @@ export default function Home() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch("/api", {
-          method: "GET",
-        });
+        const response = await fetch("photos.json");
         if (response) {
-          const { image } = await response.json();
-          if (image) {
-            setImages(image);
+          const { photos } = await response.json();
+          console.log(photos);
+          if (photos) {
+            setImages(photos);
           }
         }
       } catch (e) {
