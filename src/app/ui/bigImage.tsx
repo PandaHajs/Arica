@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { changePhoto, removeImage } from "../lib/galleryLogic";
 import styles from "./styles/bigImage.module.scss";
