@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { changePhoto, removeImage } from "../lib/galleryLogic";
 import styles from "./styles/bigImage.module.scss";
@@ -6,7 +5,7 @@ import { bigImageProps } from "../lib/types";
 
 export default function BigImage(props: bigImageProps) {
   return (
-    <div className={props.blur ? styles.bigImage : styles.hidden}>
+    <div className={props.bigImage ? styles.bigImage : styles.hidden}>
       <div className={styles.button}>
         <Image
           src="x.svg"

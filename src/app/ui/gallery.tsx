@@ -24,7 +24,7 @@ export default function Gallery(props: GalleryProps) {
                 width: "100%",
                 height: "auto",
               }}
-              quality={20}
+              quality={40}
               placeholder={`data:image/svg+xml;base64,${toBase64(
                 shimmer(700, 475)
               )}`}
@@ -49,7 +49,7 @@ export default function Gallery(props: GalleryProps) {
                 width: "100%",
                 height: "auto",
               }}
-              quality={20}
+              quality={40}
               placeholder={`data:image/svg+xml;base64,${toBase64(
                 shimmer(700, 475)
               )}`}
@@ -74,7 +74,7 @@ export default function Gallery(props: GalleryProps) {
                 width: "100%",
                 height: "auto",
               }}
-              quality={20}
+              quality={40}
               placeholder={`data:image/svg+xml;base64,${toBase64(
                 shimmer(700, 475)
               )}`}

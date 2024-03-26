@@ -9,6 +9,7 @@ import { ImageType } from "./lib/types";
 export default function Home() {
   const [blur, setBlur] = useState(false);
   const [bigImage, setBigImage] = useState<React.JSX.Element | null>(null);
+  // TODO: URL
   const [images, setImages] = useState<ImageType[]>([]);
 
   useEffect(() => {
@@ -17,7 +18,6 @@ export default function Home() {
         const response = await fetch("photos.json");
         if (response) {
           const { photos } = await response.json();
-          console.log(photos);
           if (photos) {
             setImages(photos);
           }
@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main>
       <section
-        className={blur ? styles.blur : styles.main}
+        className={blur && bigImage ? styles.blur : styles.main}
         onClick={() =>
           removeImage(bigImage as React.ReactElement, setBlur, setBigImage)
         }
