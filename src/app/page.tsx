@@ -3,17 +3,13 @@ import styles from "./page.module.scss";
 import Gallery from "./ui/gallery";
 import { useState, useEffect } from "react";
 import BigImage from "./ui/bigImage";
-import { removeImage } from "./lib/galleryLogic";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ImageType } from "./lib/types";
-import { useRouter } from "next/router";
-import { useParams } from "next/navigation";
 
 export default function Home() {
-  const [blur, setBlur] = useState(false);
-  const [bigImage, setBigImage] = useState<React.JSX.Element | null>(null);
-  // TODO: URL
-  // KURWAAAAAAAAAAAAAAAAAAAAAA
   const [images, setImages] = useState<ImageType[]>([]);
+  const router = useRouter();
+  const id = useSearchParams().get("id");
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -36,26 +32,13 @@ export default function Home() {
   return (
     <main>
       <section
-        className={blur && bigImage ? styles.blur : styles.main}
-        onClick={() =>
-          removeImage(bigImage as React.ReactElement, setBlur, setBigImage)
-        }
+        className={id ? styles.blur : styles.main}
+        onClick={() => (id ? router.push("/", { scroll: false }) : null)}
       >
         <h1>Welcome to Arica&apos;s portfolio</h1>
-        <Gallery
-          blur={blur}
-          setBlur={setBlur}
-          setBigImage={setBigImage}
-          images={images}
-        />
+        <Gallery images={images} />
       </section>
-      <BigImage
-        blur={blur}
-        setBlur={setBlur}
-        setBigImage={setBigImage}
-        images={images}
-        bigImage={bigImage}
-      />
+      <BigImage images={images} id={id} />
     </main>
   );
 }

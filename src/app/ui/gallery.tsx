@@ -1,7 +1,7 @@
 import styles from "@/app/ui/styles/gallery.module.scss";
 import Image from "next/image";
 import type { GalleryProps } from "@/app/lib/types";
-import { showImage, shimmer, toBase64 } from "@/app/lib/galleryLogic";
+import { shimmer, toBase64 } from "@/app/lib/galleryLogic";
 import { useRouter } from "next/navigation";
 
 export default function Gallery(props: GalleryProps) {
