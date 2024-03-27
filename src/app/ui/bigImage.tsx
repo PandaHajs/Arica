@@ -2,8 +2,11 @@ import Image from "next/image";
 import { changePhoto, removeImage } from "../lib/galleryLogic";
 import styles from "./styles/bigImage.module.scss";
 import { bigImageProps } from "../lib/types";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function BigImage(props: bigImageProps) {
+  const router = useRouter();
   return (
     <div className={props.bigImage ? styles.bigImage : styles.hidden}>
       <div className={styles.button}>

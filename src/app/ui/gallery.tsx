@@ -1,11 +1,12 @@
-"use client";
 import styles from "@/app/ui/styles/gallery.module.scss";
 import Image from "next/image";
 import type { GalleryProps } from "@/app/lib/types";
 import { showImage, shimmer, toBase64 } from "@/app/lib/galleryLogic";
+import { useRouter } from "next/navigation";
 
 export default function Gallery(props: GalleryProps) {
   const images = props.images;
+  const router = useRouter();
 
   return (
     <section className={styles.gallery}>
@@ -29,7 +30,7 @@ export default function Gallery(props: GalleryProps) {
                 shimmer(700, 475)
               )}`}
               onClick={() => {
-                showImage(image.id, props);
+                router.push("?id=" + image.id, { scroll: false });
               }}
             />
           ))}
@@ -54,7 +55,7 @@ export default function Gallery(props: GalleryProps) {
                 shimmer(700, 475)
               )}`}
               onClick={() => {
-                showImage(image.id, props);
+                router.push("?id=" + image.id, { scroll: false });
               }}
             />
           ))}
@@ -79,7 +80,7 @@ export default function Gallery(props: GalleryProps) {
                 shimmer(700, 475)
               )}`}
               onClick={() => {
-                showImage(image.id, props);
+                router.push("?id=" + image.id, { scroll: false });
               }}
             />
           ))}
