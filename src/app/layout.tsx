@@ -4,6 +4,7 @@ import "./globals.scss";
 import "@/app/ui/styles/variables.scss";
 import "@/app/ui/header";
 import Header from "@/app/ui/header";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,7 +42,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <Suspense fallback={null}>{children}</Suspense>
       </body>
     </html>
   );

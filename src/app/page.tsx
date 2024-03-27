@@ -38,6 +38,7 @@ export default function Home() {
         <h1>Welcome to Arica&apos;s portfolio</h1>
         <Gallery images={images} />
       </section>
+
       <BigImage images={images} id={id} />
     </main>
   );
