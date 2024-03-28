@@ -1,0 +1,49 @@
+.sec {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 40vw;
+  width: 40vw;
+  border-collapse: separate;
+  z-index: 1;
+  > a {
+    margin: 15px 5px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 15px;
+    transition-duration: 0.25s;
+    filter: invert(1);
+  }
+  > a:nth-of-type(1) {
+    margin: 15px 5px 10px 0;
+    border-radius: 5px;
+  }
+  > a:hover {
+    background-color: #b6b6b1;
+  }
+}
+
+@media (max-width: 768px) {
+  .sec {
+    max-width: 80vw;
+  }
+}
+
+@media (768px <= width < 1024px) {
+  .sec {
+    max-width: 70vw;
+  }
+}
+
+@media (1024px <= width <= 1440px) {
+  .sec {
+    max-width: 60vw;
+  }
+}
+
+@media (width > 1920px) {
+  .sec {
+    max-width: 50vw;
+  }
+}

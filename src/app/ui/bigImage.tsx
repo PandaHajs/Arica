@@ -17,7 +17,7 @@ export default function BigImage(props: bigImageProps) {
           width={50}
           height={50}
           alt="close button"
-          onClick={() => router.push("/", { scroll: false })}
+          onClick={() => router.push("/art", { scroll: false })}
         />
       </div>
       <div

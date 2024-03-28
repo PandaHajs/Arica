@@ -1,45 +1,30 @@
-"use client";
+import Image from "next/image";
 import styles from "./page.module.scss";
-import Gallery from "./ui/gallery";
-import { useState, useEffect } from "react";
-import BigImage from "./ui/bigImage";
-import { useRouter, useSearchParams } from "next/navigation";
-import { ImageType } from "./lib/types";
+import Links from "./ui/links";
+import Link from "next/link";
 
 export default function Home() {
-  const [images, setImages] = useState<ImageType[]>([]);
-  const router = useRouter();
-  const id = useSearchParams().get("id");
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await fetch("photos.json");
-        if (response) {
-          const { photos } = await response.json();
-          if (photos) {
-            setImages(photos);
-          }
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    fetchImages();
-  }, []);
-
   return (
-    <main>
-      <section
-        className={id ? styles.blur : styles.main}
-        onClick={() => (id ? router.push("/", { scroll: false }) : null)}
-      >
-        <h1>Welcome to Arica&apos;s portfolio</h1>
-        <Gallery images={images} />
+    <main className={styles.main}>
+      <section className={styles.section}>
+        <Image
+          src="/600x600.svg"
+          alt="placeholder"
+          width={600}
+          height={600}
+          style={{ width: "100%", height: "auto" }}
+        />
+        <div>
+          <h1>Paulina Bukczyńska</h1>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus
+            iusto iure quis esse ipsa, sapiente nesciunt nulla provident laborum
+            alias? Repellat consectetur tenetur tempore nobis accusamus mollitia
+            totam placeat rerum.
+          </p>
+          <Links />
+        </div>
       </section>
-
-      <BigImage images={images} id={id} />
     </main>
   );
 }

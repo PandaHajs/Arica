@@ -7,8 +7,9 @@ export default function Header() {
       <p>Placeholder</p>
       <nav className={styles.nav}>
         <Link href="/">Home</Link>
-        <Link href="/">About</Link>
-        <Link href="/">Projects</Link>
+        <Link href="/art">Art</Link>
+        <Link href="/">CV</Link>
+        <Link href="/">Contact</Link>
       </nav>
     </header>
   );
