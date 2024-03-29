@@ -1,10 +1,10 @@
 import styles from "@/app/ui/styles/gallery.module.scss";
 import Image from "next/image";
-import type { GalleryProps } from "@/app/lib/types";
+import type { galleryProps } from "@/app/lib/types";
 import { shimmer, toBase64 } from "@/app/lib/galleryLogic";
 import { useRouter } from "next/navigation";
 
-export default function Gallery(props: GalleryProps) {
+export default function Gallery(props: galleryProps) {
   const images = props.images;
   const router = useRouter();
 
@@ -12,7 +12,9 @@ export default function Gallery(props: GalleryProps) {
     <section className={styles.gallery}>
       <div className={styles.line}>
         {images
-          .filter((image) => parseInt(image.id) % 3 === 1)
+          .filter(
+            (image) => parseInt(image.id) % 3 === 1 && image.tag === props.tag
+          )
           .map((image) => (
             <Image
               key={image.id}
@@ -37,7 +39,9 @@ export default function Gallery(props: GalleryProps) {
       </div>
       <div className={styles.line}>
         {images
-          .filter((image) => parseInt(image.id) % 3 === 2)
+          .filter(
+            (image) => parseInt(image.id) % 3 === 2 && image.tag === props.tag
+          )
           .map((image) => (
             <Image
               key={image.id}
@@ -62,7 +66,9 @@ export default function Gallery(props: GalleryProps) {
       </div>
       <div className={styles.line}>
         {images
-          .filter((image) => parseInt(image.id) % 3 === 0)
+          .filter(
+            (image) => parseInt(image.id) % 3 === 0 && image.tag === props.tag
+          )
           .map((image) => (
             <Image
               key={image.id}

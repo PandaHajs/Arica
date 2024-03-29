@@ -1,19 +1,63 @@
-import { useRouter } from "next/navigation";
+import { checkImageProps, imageType, changeImageProps } from "./types";
 
-export function useChangeImage() {
-  const router = useRouter();
-
-  return (id: string, nextPhoto: boolean, length: number) => {
-    if (parseInt(id) === 1 && !nextPhoto) {
-      router.push("?id=" + length, { scroll: false });
-    } else if (parseInt(id) === length && nextPhoto) {
-      router.push("?id=1", { scroll: false });
-    } else {
-      router.push("?id=" + (parseInt(id) + (nextPhoto ? 1 : -1)), {
+export function ChangeImage(props: changeImageProps) {
+  if (parseInt(props.id) === 1 && !props.nextPhoto) {
+    props.router.push("?id=" + props.length, { scroll: false });
+  } else if (parseInt(props.id) === props.length && props.nextPhoto) {
+    props.router.push("?id=1", { scroll: false });
+  } else {
+    props.router.push(
+      "?id=" + (parseInt(props.id) + (props.nextPhoto ? 1 : -1)),
+      {
         scroll: false,
+      }
+    );
+  }
+}
+
+export function checkImage(props: checkImageProps) {
+  if (props.id === "1" && !props.nextPhoto) {
+    checkImage({
+      tag: props.tag,
+      images: props.images,
+      id: props.images.length.toString(),
+      nextPhoto: props.nextPhoto,
+      router: props.router,
+    });
+  } else if (props.id === props.images.length.toString() && props.nextPhoto) {
+    checkImage({
+      tag: props.tag,
+      images: props.images,
+      id: "0",
+      nextPhoto: props.nextPhoto,
+      router: props.router,
+    });
+  } else {
+    const nextImage = props.images.find(
+      (image: imageType) =>
+        image.id ===
+        props.images[parseInt(props.id) + (props.nextPhoto ? 0 : -2)].id
+    );
+    console.log(nextImage, props.id);
+    if (nextImage === undefined) return;
+    if (nextImage.tag === props.tag) {
+      ChangeImage({
+        id: props.id,
+        nextPhoto: props.nextPhoto,
+        length: props.images.length,
+        router: props.router,
+      });
+    } else {
+      const id = (parseInt(props.id) + (props.nextPhoto ? 1 : -1)).toString();
+      checkImage({
+        tag: props.tag,
+        images: props.images,
+        id: id,
+        nextPhoto: props.nextPhoto,
+        router: props.router,
       });
     }
-  };
+  }
 }
 
 export const shimmer = (w: number, h: number) => `

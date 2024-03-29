@@ -9,14 +9,28 @@
     width: 40%;
     display: flex;
     justify-content: right;
+    p,
     a {
       margin: 0 10px;
+      cursor: pointer;
     }
     a:nth-of-type(4) {
       margin-right: 5vw;
     }
   }
-  p {
+  > p {
     width: 60%;
+  }
+  .test {
+    > ul {
+      display: none;
+    }
+  }
+  .test:hover {
+    > ul {
+      display: block;
+      position: absolute;
+      list-style: none;
+    }
   }
 }

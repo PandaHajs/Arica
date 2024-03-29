@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import styles from "@/app/ui/styles/header.module.scss";
+import DropDown from "./dropDown";
 
 export default function Header() {
   return (
@@ -7,7 +9,10 @@ export default function Header() {
       <p>Placeholder</p>
       <nav className={styles.nav}>
         <Link href="/">Home</Link>
-        <Link href="/art">Art</Link>
+        <div className={styles.test}>
+          <p>Art</p>
+          <DropDown />
+        </div>
         <Link href="/">CV</Link>
         <Link href="/">Contact</Link>
       </nav>
