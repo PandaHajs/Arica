@@ -38,7 +38,6 @@ export function checkImage(props: checkImageProps) {
         image.id ===
         props.images[parseInt(props.id) + (props.nextPhoto ? 0 : -2)].id
     );
-    console.log(nextImage, props.id);
     if (nextImage === undefined) return;
     if (nextImage.tag === props.tag) {
       ChangeImage({

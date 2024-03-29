@@ -5,10 +5,11 @@ import { useState, useEffect } from "react";
 import BigImage from "@/app/ui/bigImage";
 import { useRouter, useSearchParams, useParams } from "next/navigation";
 import { imageType } from "@/app/lib/types";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export default function Home() {
   const [images, setImages] = useState<imageType[]>([]);
-  const router = useRouter();
+  const router: AppRouterInstance = useRouter();
   const id = useSearchParams().get("id");
   const tag = useParams<{ tag: string }>();
 

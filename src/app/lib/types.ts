@@ -1,3 +1,5 @@
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
 export type imageType = {
   id: string;
   src: string;
@@ -30,5 +32,5 @@ export type changeImageProps = {
   id: string;
   nextPhoto: boolean;
   length: number;
-  router: any;
+  router: AppRouterInstance;
 };
