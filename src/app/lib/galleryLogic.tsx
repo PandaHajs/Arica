@@ -20,7 +20,7 @@ export function checkImage(props: checkImageProps) {
     checkImage({
       tag: props.tag,
       images: props.images,
-      id: props.images.length.toString(),
+      id: (props.images.length + 1).toString(),
       nextPhoto: props.nextPhoto,
       router: props.router,
     });
