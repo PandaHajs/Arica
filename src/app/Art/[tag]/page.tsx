@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch("/photos.json");
+        const response = await fetch("/" + tag.tag + ".json");
         if (response) {
           const { photos } = await response.json();
           if (photos) {
@@ -29,7 +29,7 @@ export default function Home() {
     };
 
     fetchImages();
-  }, []);
+  }, [tag.tag]);
 
   return (
     <main>

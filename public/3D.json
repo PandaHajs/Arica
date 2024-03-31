@@ -1,0 +1,44 @@
+{
+  "photos": [
+    {
+      "id": "1",
+      "src": "/3D1.webp",
+      "alt": "The camera moves accross a 3D model of an abandonen witches' labolatory",
+      "width": "1024",
+      "height": "576",
+      "tag": "3D"
+    },
+    {
+      "id": "2",
+      "src": "/3D2.jpg",
+      "alt": "3D model of a bunny dressed as a nobleman",
+      "width": "1521",
+      "height": "927",
+      "tag": "3D"
+    },
+    {
+      "id": "3",
+      "src": "/3D3.jpg",
+      "alt": "3D model of a wooden wheelchair",
+      "width": "1280",
+      "height": "720",
+      "tag": "3D"
+    },
+    {
+      "id": "4",
+      "src": "/3D4.jpg",
+      "alt": "3D model of an abandonen witches' labolatory",
+      "width": "1280",
+      "height": "720",
+      "tag": "3D"
+    },
+    {
+      "id": "5",
+      "src": "/3D5.jpg",
+      "alt": "3D model of a wooden bucket",
+      "width": "1228",
+      "height": "690",
+      "tag": "3D"
+    }
+  ]
+}

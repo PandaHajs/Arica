@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./styles/bigImage.module.scss";
 import { bigImageProps } from "../lib/types";
 import { useRouter } from "next/navigation";
-import { checkImage } from "../lib/galleryLogic";
+import { ChangeImage } from "../lib/galleryLogic";
 
 export default function BigImage(props: bigImageProps) {
   const router = useRouter();
@@ -23,10 +23,9 @@ export default function BigImage(props: bigImageProps) {
         className={styles.left}
         onClick={() =>
           props.id
-            ? checkImage({
-                tag: Array.isArray(props.tag) ? props.tag[0] : props.tag,
-                images: props.images,
+            ? ChangeImage({
                 id: props.id,
+                length: props.images.length,
                 nextPhoto: false,
                 router: router,
               })
@@ -44,10 +43,9 @@ export default function BigImage(props: bigImageProps) {
         className={styles.right}
         onClick={() =>
           props.id
-            ? checkImage({
-                tag: Array.isArray(props.tag) ? props.tag[0] : props.tag,
-                images: props.images,
+            ? ChangeImage({
                 id: props.id,
+                length: props.images.length,
                 nextPhoto: true,
                 router: router,
               })
