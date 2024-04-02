@@ -6,11 +6,6 @@ import BigImage from "@/app/ui/bigImage";
 import { useRouter, useSearchParams, useParams } from "next/navigation";
 import { imageType } from "@/app/lib/types";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Galleries",
-};
 
 export function Home() {
   const [images, setImages] = useState<imageType[]>([]);
