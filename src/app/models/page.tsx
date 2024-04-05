@@ -11,7 +11,7 @@ export default function Models() {
     const fbx = useLoader(FBXLoader, "/diorama.fbx");
     return (
       <group>
-        <primitive scale={3} object={fbx} />
+        <primitive scale={2} object={fbx} />
       </group>
     );
   };
