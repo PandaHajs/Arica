@@ -11,16 +11,15 @@ export default function Models() {
     const fbx = useLoader(FBXLoader, "/diorama.fbx");
     return (
       <group>
-        <primitive scale={3} object={fbx} />
+        <primitive scale={0.02} object={fbx} />
       </group>
     );
   };
 
   const ModelCanvas = () => {
     return (
-      <Canvas>
+      <Canvas camera={{ position: [0, 5, 5] }}>
         <ambientLight intensity={50} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <Suspense fallback={null}>
           <Model />
         </Suspense>
@@ -30,8 +29,14 @@ export default function Models() {
   };
 
   return (
-    <div className={styles.model}>
-      <ModelCanvas />
+    <div className={styles.main}>
+      <section className={styles.menu}>
+        <h1>Models</h1>
+        <p>Here are some 3D models</p>
+      </section>
+      <div className={styles.model}>
+        <ModelCanvas />
+      </div>
     </div>
   );
 }

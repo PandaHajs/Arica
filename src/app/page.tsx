@@ -7,7 +7,7 @@ export default function Home() {
     <main className={styles.main}>
       <section className={styles.section}>
         <Image
-          src="/600x600.svg"
+          src="https://placewaifu.com/image/200"
           alt="placeholder"
           width={600}
           height={600}

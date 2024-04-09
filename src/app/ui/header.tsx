@@ -14,7 +14,7 @@ export default function Header() {
           <DropDown />
         </div>
         <Link href="/">CV</Link>
-        <Link href="/">Contact</Link>
+        <Link href="/Models">3D Models</Link>
       </nav>
     </header>
   );
