@@ -1,5 +1,5 @@
 "use client";
-import { OrbitControls } from "@react-three/drei";
+import { CameraControls } from "@react-three/drei";
 import styles from "./page.module.scss";
 import { Canvas } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
@@ -23,7 +23,7 @@ export default function Models() {
 				<Suspense fallback={null}>
 					<Model />
 				</Suspense>
-				<OrbitControls />
+				<CameraControls />
 			</Canvas>
 		);
 	};
