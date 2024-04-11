@@ -1,4 +1,4 @@
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export type imageType = {
   id: string;
@@ -25,7 +25,7 @@ export type checkImageProps = {
   images: imageType[];
   id: string;
   nextPhoto: boolean;
-  router: any;
+  router: AppRouterInstance;
 };
 
 export type changeImageProps = {

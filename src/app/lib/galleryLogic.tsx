@@ -1,18 +1,32 @@
-import { changeImageProps } from "./types";
+import type { changeImageProps } from "./types";
 
-export function ChangeImage(props: changeImageProps) {
-  if (parseInt(props.id) === 1 && !props.nextPhoto) {
-    props.router.push("?id=" + props.length, { scroll: false });
-  } else if (parseInt(props.id) === props.length && props.nextPhoto) {
-    props.router.push("?id=1", { scroll: false });
-  } else {
-    props.router.push(
-      "?id=" + (parseInt(props.id) + (props.nextPhoto ? 1 : -1)),
-      {
-        scroll: false,
-      }
-    );
-  }
+export function changeImageHandler(props: changeImageProps) {
+	if (Number.parseInt(props.id) === 1 && !props.nextPhoto) {
+		props.router.push(`?id=${props.length}`, { scroll: false });
+	} else if (Number.parseInt(props.id) === props.length && props.nextPhoto) {
+		props.router.push("?id=1", { scroll: false });
+	} else {
+		props.router.push(
+			`?id=${Number.parseInt(props.id) + (props.nextPhoto ? 1 : -1)}`,
+			{
+				scroll: false,
+			},
+		);
+	}
+}
+
+export function keyDownHandler(
+	e: React.KeyboardEvent<HTMLDivElement>,
+	props: changeImageProps,
+) {
+	console.log(e.key);
+	if (e.key === "ArrowRight") {
+		changeImageHandler({ ...props, nextPhoto: true });
+	} else if (e.key === "ArrowLeft") {
+		changeImageHandler({ ...props, nextPhoto: false });
+	} else if (e.key === "Escape") {
+		props.router.push("?id=", { scroll: false });
+	}
 }
 
 export const shimmer = (w: number, h: number) => `
@@ -30,6 +44,6 @@ export const shimmer = (w: number, h: number) => `
 </svg>`;
 
 export const toBase64 = (str: string) =>
-  typeof window === "undefined"
-    ? Buffer.from(str).toString("base64")
-    : window.btoa(str);
+	typeof window === "undefined"
+		? Buffer.from(str).toString("base64")
+		: window.btoa(str);
