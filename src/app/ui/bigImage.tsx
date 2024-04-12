@@ -11,7 +11,6 @@ export default function BigImage(props: bigImageProps) {
 	return (
 		<div
 			className={image ? styles.bigImage : styles.hidden}
-			id="test"
 			onKeyDown={(event) => {
 				props.id
 					? keyDownHandler(event, {
