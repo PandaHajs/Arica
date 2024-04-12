@@ -1,19 +1,23 @@
-.main {
+.section {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-height: 92vh;
   h1 {
     margin-top: 8vh;
   }
 }
-
 .blur {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: hsla(0, 0%, 0%, 0.5);
+  height: 100%;
+  z-index: 1;
+  position: relative;
+  min-height: 92vh;
   h1 {
     margin-top: 8vh;
   }

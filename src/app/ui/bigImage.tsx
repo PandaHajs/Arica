@@ -16,13 +16,15 @@ export default function BigImage(props: bigImageProps) {
 					? keyDownHandler(event, {
 							id: props.id,
 							length: props.images.length,
-							nextPhoto: false,
 							router: router,
+							tag: props.tag,
 						})
 					: null;
 			}}
+			tabIndex={0}
+			role="button"
 		>
-			<div className={styles.button}>
+			<button className={styles.button} type="button">
 				<Image
 					src="/x.svg"
 					width={50}
@@ -30,8 +32,9 @@ export default function BigImage(props: bigImageProps) {
 					alt="close button"
 					onClick={() => router.push(`/Art/${props.tag}`, { scroll: false })}
 				/>
-			</div>
-			<div
+			</button>
+			<button
+				type="button"
 				className={styles.left}
 				onClick={() =>
 					props.id
@@ -50,8 +53,9 @@ export default function BigImage(props: bigImageProps) {
 					height={50}
 					alt="previous photo"
 				/>
-			</div>
-			<div
+			</button>
+			<button
+				type="button"
 				className={styles.right}
 				onClick={() =>
 					props.id
@@ -70,7 +74,7 @@ export default function BigImage(props: bigImageProps) {
 					height={50}
 					alt="next photo"
 				/>
-			</div>
+			</button>
 			{image ? (
 				<Image
 					src={image.src}

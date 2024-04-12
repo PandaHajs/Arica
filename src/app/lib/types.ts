@@ -20,17 +20,16 @@ export type bigImageProps = {
   tag: string;
 };
 
-export type checkImageProps = {
-  tag: string;
-  images: imageType[];
-  id: string;
-  nextPhoto: boolean;
-  router: AppRouterInstance;
-};
-
 export type changeImageProps = {
   id: string;
   nextPhoto: boolean;
   length: number;
   router: AppRouterInstance;
 };
+
+export type keyDownProps = {
+  id: string;
+  length: number;
+  router: AppRouterInstance;
+  tag: string;
+}

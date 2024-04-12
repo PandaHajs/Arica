@@ -35,6 +35,11 @@ export default function Gallery(props: galleryProps) {
 							onClick={() => {
 								router.push(`?id=${image.id}`, { scroll: false });
 							}}
+							onKeyDown={(e) => {
+								if (e.key === "Enter") {
+									router.push(`?id=${image.id}`, { scroll: false });
+								}
+							}}
 						/>
 					))}
 			</div>

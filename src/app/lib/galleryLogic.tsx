@@ -1,4 +1,4 @@
-import type { changeImageProps } from "./types";
+import type { changeImageProps, keyDownProps } from "./types";
 
 export function changeImageHandler(props: changeImageProps) {
 	if (Number.parseInt(props.id) === 1 && !props.nextPhoto) {
@@ -17,7 +17,7 @@ export function changeImageHandler(props: changeImageProps) {
 
 export function keyDownHandler(
 	e: React.KeyboardEvent<HTMLDivElement>,
-	props: changeImageProps,
+	props: keyDownProps,
 ) {
 	console.log(e.key);
 	if (e.key === "ArrowRight") {
@@ -25,7 +25,7 @@ export function keyDownHandler(
 	} else if (e.key === "ArrowLeft") {
 		changeImageHandler({ ...props, nextPhoto: false });
 	} else if (e.key === "Escape") {
-		props.router.push("?id=", { scroll: false });
+		props.router.push(`/Art/${props.tag}`, { scroll: false });
 	}
 }
 

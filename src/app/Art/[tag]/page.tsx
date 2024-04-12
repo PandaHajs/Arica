@@ -33,16 +33,12 @@ export default function Home() {
 
 	return (
 		<main>
+			{/* biome-ignore lint/a11y/useKeyWithClickEvents: redundant due to how modal is created */}
 			<section
-				className={id ? styles.blur : styles.main}
+				className={id ? styles.blur : styles.section}
 				onClick={() =>
 					id ? router.push(`/Art/${tag.tag}`, { scroll: false }) : null
 				}
-				onKeyDown={(event) => {
-					if (event.key === "Enter" || event.key === " ") {
-						id ? router.push(`/Art/${tag.tag}`, { scroll: false }) : null;
-					}
-				}}
 			>
 				<h1>Welcome to Arica&apos;s portfolio</h1>
 				<Gallery images={images} tag={tag.tag} />
