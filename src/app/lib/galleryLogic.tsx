@@ -19,7 +19,6 @@ export function keyDownHandler(
 	e: React.KeyboardEvent<HTMLDivElement>,
 	props: keyDownProps,
 ) {
-	console.log(e.key);
 	if (e.key === "ArrowRight") {
 		changeImageHandler({ ...props, nextPhoto: true });
 	} else if (e.key === "ArrowLeft") {
