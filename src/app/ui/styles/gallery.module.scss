@@ -4,14 +4,12 @@
   width: 25vw;
   align-items: center;
   margin: 0 10px;
-  > img {
+  > div {
     margin: 10px 0;
     cursor: pointer;
     user-select: none;
-    
-  }
-  > img:focus {
-    border: 5px solid red;
+    border: none;
+    height: fit-content;
   }
 }
 

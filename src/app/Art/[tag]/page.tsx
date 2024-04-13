@@ -40,7 +40,6 @@ export default function Home() {
 					id ? router.push(`/Art/${tag.tag}`, { scroll: false }) : null
 				}
 			>
-				<h1>Welcome to Arica&apos;s portfolio</h1>
 				<Gallery images={images} tag={tag.tag} />
 			</section>
 
