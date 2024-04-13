@@ -8,7 +8,7 @@ import { FBXLoader } from "three/examples/jsm/Addons.js";
 
 export default function Models() {
 	const Model = () => {
-		const fbx = useLoader(FBXLoader, "/diorama.fbx");
+		const fbx = useLoader(FBXLoader, "/wozek.fbx");
 		return (
 			<group>
 				<primitive scale={0.02} object={fbx} />
