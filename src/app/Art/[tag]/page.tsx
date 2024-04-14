@@ -27,7 +27,9 @@ export default function Home() {
 				console.log(e);
 			}
 		};
-
+		if (document.activeElement) {
+			(document.activeElement as HTMLElement).blur();
+		}
 		fetchImages();
 	}, [tag.tag]);
 

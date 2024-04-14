@@ -5,7 +5,8 @@
   width: 40vw;
   border-collapse: separate;
   z-index: 1;
-  > a {
+
+  >a {
     margin: 15px 5px 10px 10px;
     display: flex;
     justify-content: center;
@@ -15,11 +16,13 @@
     transition-duration: 0.25s;
     filter: invert(1);
   }
-  > a:nth-of-type(1) {
+
+  >a:nth-of-type(1) {
     margin: 15px 5px 10px 0;
     border-radius: 5px;
   }
-  > a:hover {
+
+  >a:hover {
     background-color: #b6b6b1;
   }
 }
@@ -30,13 +33,13 @@
   }
 }
 
-@media (768px <= width < 1024px) {
+@media (768px <=width < 1024px) {
   .sec {
     max-width: 70vw;
   }
 }
 
-@media (1024px <= width <= 1440px) {
+@media (1024px <=width <=1440px) {
   .sec {
     max-width: 60vw;
   }

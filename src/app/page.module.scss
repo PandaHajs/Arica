@@ -3,10 +3,12 @@
   align-items: center;
   justify-content: center;
   height: 50vh;
+
   .section {
     display: flex;
     max-width: 40%;
-    > img {
+
+    >img {
       max-width: 10vw;
       border-radius: 100%;
       margin: 0 3rem;
