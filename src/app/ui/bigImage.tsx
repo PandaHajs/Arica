@@ -3,22 +3,20 @@ import styles from "./styles/bigImage.module.scss";
 import type { bigImageProps } from "../lib/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import { changeImageHandler, keyDownHandler } from "../lib/galleryLogic";
-import { useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 export default function BigImage(props: bigImageProps) {
 	const router = useRouter();
 	const image = props.images.find((image) => image.id === props.id);
 	const id = useSearchParams().get("id");
-
-	useEffect(() => {
-		if (id) {
-			document.getElementById("bigImage")?.focus();
-		}
-	}, [id]);
+	const bigImage = useRef(null);
 
 	return (
 		<div
-			id="bigImage"
+			onLoad={() => {
+				(bigImage.current as HTMLDivElement | null)?.focus();
+			}}
+			ref={bigImage}
 			className={image ? styles.bigImage : styles.hidden}
 			onKeyDown={(event) => {
 				props.id
