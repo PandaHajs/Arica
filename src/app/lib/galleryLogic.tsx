@@ -1,30 +1,42 @@
-import type { changeImageProps, keyDownProps } from "./types";
+import type { changeImageProps } from "./types";
 
-export function changeImageHandler(props: changeImageProps) {
-	if (Number.parseInt(props.id) === 1 && !props.nextPhoto) {
-		props.router.push(`?id=${props.length}`, { scroll: false });
-	} else if (Number.parseInt(props.id) === props.length && props.nextPhoto) {
-		props.router.push("?id=1", { scroll: false });
-	} else {
-		props.router.push(
-			`?id=${Number.parseInt(props.id) + (props.nextPhoto ? 1 : -1)}`,
-			{
-				scroll: false,
-			},
-		);
+export function handleImageChange(props: changeImageProps) {
+	switch (props.nextPhoto) {
+		case true:
+			props.bigImage.current?.classList.add(props.styles.animationRight);
+			if (Number.parseInt(props.id) === props.length) {
+				props.router.push("?id=1", { scroll: false });
+			} else {
+				props.router.push(`?id=${Number.parseInt(props.id) + 1}`, {
+					scroll: false,
+				});
+			}
+			break;
+		case false:
+			props.bigImage.current?.classList.add(props.styles.animationLeft);
+			if (Number.parseInt(props.id) === 1) {
+				props.router.push(`?id=${props.length}`, { scroll: false });
+				//	console.log("inside");
+			} else {
+				props.router.push(`?id=${Number.parseInt(props.id) - 1}`, {
+					scroll: false,
+				});
+				//	console.log("inside");
+			}
 	}
 }
 
-export function keyDownHandler(
-	e: React.KeyboardEvent<HTMLDivElement>,
-	props: keyDownProps,
+export function handleKeyDown(
+	event: React.KeyboardEvent,
+	props: changeImageProps,
+	tag: string,
 ) {
-	if (e.key === "ArrowRight") {
-		changeImageHandler({ ...props, nextPhoto: true });
-	} else if (e.key === "ArrowLeft") {
-		changeImageHandler({ ...props, nextPhoto: false });
-	} else if (e.key === "Escape") {
-		props.router.push(`/Art/${props.tag}`, { scroll: false });
+	if (event.key === "ArrowRight") {
+		handleImageChange({ ...props, nextPhoto: true });
+	} else if (event.key === "ArrowLeft") {
+		handleImageChange({ ...props, nextPhoto: false });
+	} else if (event.key === "Escape") {
+		props.router.push(`/Art/${tag}`, { scroll: false });
 	}
 }
 

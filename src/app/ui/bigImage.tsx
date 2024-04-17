@@ -1,32 +1,62 @@
 import Image from "next/image";
 import styles from "./styles/bigImage.module.scss";
-import type { bigImageProps } from "../lib/types";
-import { useRouter, useSearchParams } from "next/navigation";
-import { changeImageHandler, keyDownHandler } from "../lib/galleryLogic";
-import { useRef, useEffect } from "react";
+import type { bigImageProps, imageType } from "../lib/types";
+import { useRouter } from "next/navigation";
+import { handleImageChange, handleKeyDown } from "../lib/galleryLogic";
+import { useRef, useState, useEffect } from "react";
 
 export default function BigImage(props: bigImageProps) {
 	const router = useRouter();
-	const image = props.images.find((image) => image.id === props.id);
-	const id = useSearchParams().get("id");
-	const bigImage = useRef(null);
+	const [image, setImage] = useState<undefined | null | imageType>(null);
+	const bigImage = useRef<HTMLDivElement>(null);
+	const [isAnimation, setIsAnimation] = useState(false);
+
+	useEffect(() => {
+		if (props.id && !isAnimation) {
+			setImage(props.images.find((image) => image.id === props.id));
+			(bigImage.current as HTMLDivElement | null)?.classList.remove(
+				styles.animationRight,
+				styles.animationLeft,
+			);
+			//console.log("removed", bigImage.current?.classList);
+		} else if (!props.id) {
+			setImage(null);
+			setIsAnimation(false);
+		}
+	}, [props.id, props.images, isAnimation]);
 
 	return (
 		<div
 			onLoad={() => {
 				(bigImage.current as HTMLDivElement | null)?.focus();
 			}}
+			onAnimationStart={() => {
+				//console.log("animation started");
+			}}
+			onAnimationEnd={() => {
+				setIsAnimation(false);
+				//console.log("animation ended");
+			}}
 			ref={bigImage}
 			className={image ? styles.bigImage : styles.hidden}
 			onKeyDown={(event) => {
-				props.id
-					? keyDownHandler(event, {
+				//event.preventDefault();
+				if (props.id && !isAnimation) {
+					setIsAnimation(true);
+					handleKeyDown(
+						event,
+						{
 							id: props.id,
 							length: props.images.length,
 							router: router,
-							tag: props.tag,
-						})
-					: null;
+							bigImage: bigImage,
+							styles: styles,
+						},
+						props.tag,
+					);
+				} else {
+					return null;
+				}
 			}}
 			tabIndex={0}
 			role="button"
@@ -43,16 +73,21 @@ export default function BigImage(props: bigImageProps) {
 			<button
 				type="button"
 				className={styles.left}
-				onClick={() =>
-					props.id
-						? changeImageHandler({
-								id: props.id,
-								length: props.images.length,
-								nextPhoto: false,
-								router: router,
-							})
-						: null
-				}
+				onClick={() => {
+					if (props.id) {
+						handleImageChange({
+							id: props.id,
+							nextPhoto: false,
+							length: props.images.length,
+							router: router,
+							bigImage: bigImage,
+							styles: styles,
+						});
+						setIsAnimation(true);
+					} else {
+						return null;
+					}
+				}}
 			>
 				<Image
 					src="/chevron-left.svg"
@@ -64,16 +99,21 @@ export default function BigImage(props: bigImageProps) {
 			<button
 				type="button"
 				className={styles.right}
-				onClick={() =>
-					props.id
-						? changeImageHandler({
-								id: props.id,
-								length: props.images.length,
-								nextPhoto: true,
-								router: router,
-							})
-						: null
-				}
+				onClick={() => {
+					if (props.id) {
+						handleImageChange({
+							id: props.id,
+							nextPhoto: true,
+							length: props.images.length,
+							router: router,
+							bigImage: bigImage,
+							styles: styles,
+						});
+						setIsAnimation(true);
+					} else {
+						return null;
+					}
+				}}
 			>
 				<Image
 					src="/chevron-right.svg"
@@ -82,7 +122,7 @@ export default function BigImage(props: bigImageProps) {
 					alt="next photo"
 				/>
 			</button>
-			{image ? (
+			{image && (
 				<Image
 					src={image.src}
 					alt={image.alt}
@@ -95,7 +135,7 @@ export default function BigImage(props: bigImageProps) {
 					quality={40}
 					priority={true}
 				/>
-			) : null}
+			)}
 		</div>
 	);
 }

@@ -77,3 +77,33 @@
 .hidden {
   display: none;
 }
+
+.animationLeft {
+  animation: left 0.75s forwards;
+}
+
+.animationRight {
+  animation: right 0.75s forwards;
+}
+
+@keyframes left {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-100%, -50%);
+  }
+}
+
+@keyframes right {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(0%, -50%);
+  }
+}

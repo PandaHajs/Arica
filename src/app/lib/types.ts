@@ -1,4 +1,5 @@
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import type { RefObject } from "react";
 
 export type imageType = {
   id: string;
@@ -22,9 +23,13 @@ export type bigImageProps = {
 
 export type changeImageProps = {
   id: string;
-  nextPhoto: boolean;
+  nextPhoto?: boolean;
   length: number;
   router: AppRouterInstance;
+  bigImage: RefObject<HTMLDivElement>;
+  styles:  {
+    readonly [key: string]: string;
+}
 };
 
 export type keyDownProps = {

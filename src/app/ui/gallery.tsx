@@ -39,7 +39,7 @@ export default function Gallery(props: galleryProps) {
 						className={styles.galleryImage}
 					>
 						<Image
-							priority={Number.parseInt(image.id) <= 3 ? true : false}
+							priority={Number.parseInt(image.id) <= 3}
 							src={image.src}
 							alt={image.alt}
 							width={image.width}
