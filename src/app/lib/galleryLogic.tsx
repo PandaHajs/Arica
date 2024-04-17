@@ -13,7 +13,11 @@ export function handleImageChange(props: changeImageProps) {
 			}
 			break;
 		case false:
-			props.bigImage.current?.classList.add(props.styles.animationLeft);
+			if (
+				!props.bigImage.current?.classList.contains(props.styles.animationLeft)
+			) {
+				props.bigImage.current?.classList.add(props.styles.animationLeft);
+			}
 			if (Number.parseInt(props.id) === 1) {
 				props.router.push(`?id=${props.length}`, { scroll: false });
 				//	console.log("inside");

@@ -10,6 +10,7 @@ export default function BigImage(props: bigImageProps) {
 	const [image, setImage] = useState<undefined | null | imageType>(null);
 	const bigImage = useRef<HTMLDivElement>(null);
 	const [isAnimation, setIsAnimation] = useState(false);
+	const canGo = useRef(true);
 
 	useEffect(() => {
 		if (props.id && !isAnimation) {
@@ -41,8 +42,9 @@ export default function BigImage(props: bigImageProps) {
 			className={image ? styles.bigImage : styles.hidden}
 			onKeyDown={(event) => {
 				//event.preventDefault();
-				if (props.id && !isAnimation) {
+				if (props.id && !isAnimation && canGo.current) {
 					setIsAnimation(true);
+					canGo.current = false;
 					handleKeyDown(
 						event,
 						{
@@ -54,6 +56,11 @@ export default function BigImage(props: bigImageProps) {
 						},
 						props.tag,
 					);
+					setTimeout(() => {
+						canGo.current = true;
+					}, 900);
+					// seems to have fixed it but it's a bit of a hack
+					// if you're reading this pls tell me of a better solution
 				} else {
 					return null;
 				}
