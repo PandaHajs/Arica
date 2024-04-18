@@ -11,25 +11,28 @@ export default function BigImage(props: bigImageProps) {
 	const bigImage = useRef<HTMLDivElement>(null);
 	const [isAnimation, setIsAnimation] = useState(false);
 	const canGo = useRef(true);
+	const [isLoaded, setIsLoaded] = useState(false);
 
 	useEffect(() => {
 		if (props.id && !isAnimation) {
 			setImage(props.images.find((image) => image.id === props.id));
-			(bigImage.current as HTMLDivElement | null)?.classList.remove(
-				styles.animationRight,
-				styles.animationLeft,
-			);
+			if (isLoaded)
+				(bigImage.current as HTMLDivElement | null)?.classList.remove(
+					styles.animationRight,
+					styles.animationLeft,
+				);
 			//console.log("removed", bigImage.current?.classList);
 		} else if (!props.id) {
 			setImage(null);
 			setIsAnimation(false);
 		}
-	}, [props.id, props.images, isAnimation]);
+	}, [props.id, props.images, isAnimation, isLoaded]);
 
 	return (
 		<div
 			onLoad={() => {
 				(bigImage.current as HTMLDivElement | null)?.focus();
+				setIsLoaded(true);
 			}}
 			onAnimationStart={() => {
 				//console.log("animation started");
@@ -42,8 +45,9 @@ export default function BigImage(props: bigImageProps) {
 			className={image ? styles.bigImage : styles.hidden}
 			onKeyDown={(event) => {
 				//event.preventDefault();
-				if (props.id && !isAnimation && canGo.current) {
+				if (props.id && !isAnimation && canGo.current && isLoaded) {
 					setIsAnimation(true);
+					setIsLoaded(false);
 					canGo.current = false;
 					handleKeyDown(
 						event,
@@ -58,9 +62,10 @@ export default function BigImage(props: bigImageProps) {
 					);
 					setTimeout(() => {
 						canGo.current = true;
-					}, 900);
+					}, 1000);
 					// seems to have fixed it but it's a bit of a hack
 					// if you're reading this pls tell me of a better solution
+					// the code seems even worse but it appears to work fully now :)
 				} else {
 					return null;
 				}
