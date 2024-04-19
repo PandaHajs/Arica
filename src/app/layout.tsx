@@ -4,7 +4,7 @@ import "./globals.scss";
 import "@/app/ui/styles/variables.scss";
 import "@/app/ui/header";
 import Header from "@/app/ui/header";
-import { Suspense } from "react";
+import { ProgressBar, ProgressBarProvider } from "react-transition-progress";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,8 +41,11 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<Header />
-				<Suspense fallback={null}>{children}</Suspense>
+				<ProgressBarProvider>
+					<Header />
+					{children}
+					<ProgressBar className={"test"} />
+				</ProgressBarProvider>
 			</body>
 		</html>
 	);

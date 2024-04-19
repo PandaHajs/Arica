@@ -3,7 +3,6 @@ import type { changeImageProps } from "./types";
 export function handleImageChange(props: changeImageProps) {
 	switch (props.nextPhoto) {
 		case true:
-			props.bigImage.current?.classList.add(props.styles.animationRight);
 			if (Number.parseInt(props.id) === props.length) {
 				props.router.push("?id=1", { scroll: false });
 			} else {
@@ -13,19 +12,12 @@ export function handleImageChange(props: changeImageProps) {
 			}
 			break;
 		case false:
-			if (
-				!props.bigImage.current?.classList.contains(props.styles.animationLeft)
-			) {
-				props.bigImage.current?.classList.add(props.styles.animationLeft);
-			}
 			if (Number.parseInt(props.id) === 1) {
 				props.router.push(`?id=${props.length}`, { scroll: false });
-				//	console.log("inside");
 			} else {
 				props.router.push(`?id=${Number.parseInt(props.id) - 1}`, {
 					scroll: false,
 				});
-				//	console.log("inside");
 			}
 	}
 }
@@ -34,13 +26,18 @@ export function handleKeyDown(
 	event: React.KeyboardEvent,
 	props: changeImageProps,
 	tag: string,
-) {
+): boolean | undefined {
 	if (event.key === "ArrowRight") {
 		handleImageChange({ ...props, nextPhoto: true });
-	} else if (event.key === "ArrowLeft") {
+		return true;
+	}
+	if (event.key === "ArrowLeft") {
 		handleImageChange({ ...props, nextPhoto: false });
-	} else if (event.key === "Escape") {
+		return false;
+	}
+	if (event.key === "Escape") {
 		props.router.push(`/Art/${tag}`, { scroll: false });
+		return undefined;
 	}
 }
 

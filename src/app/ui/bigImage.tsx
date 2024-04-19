@@ -8,155 +8,169 @@ import {
 	checkKey,
 } from "../lib/galleryLogic";
 import { useRef, useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function BigImage(props: bigImageProps) {
 	const router = useRouter();
 	const [image, setImage] = useState<undefined | null | imageType>(null);
 	const bigImage = useRef<HTMLDivElement>(null);
-	const [isAnimation, setIsAnimation] = useState(false);
-	const canGo = useRef(true);
-	const [isLoaded, setIsLoaded] = useState(false);
+	const [isNext, setIsNext] = useState(false);
+	const lastSwitch = useRef(Date.now());
 
 	useEffect(() => {
-		if (props.id && !isAnimation) {
+		if (props.id) {
 			setImage(props.images.find((image) => image.id === props.id));
-			if (isLoaded)
-				(bigImage.current as HTMLDivElement | null)?.classList.remove(
-					styles.animationRight,
-					styles.animationLeft,
-				);
 		} else if (!props.id) {
 			setImage(null);
-			setIsAnimation(false);
 		}
-	}, [props.id, props.images, isAnimation, isLoaded]);
+	}, [props.id, props.images]);
 
 	return (
-		<div
-			onLoad={() => {
-				(bigImage.current as HTMLDivElement | null)?.focus();
-				setIsLoaded(true);
-			}}
-			onAnimationEnd={() => {
-				setIsAnimation(false);
-			}}
-			ref={bigImage}
-			className={image ? styles.bigImage : styles.hidden}
-			onKeyDown={(event) => {
-				if (checkKey(event)) {
-					if (props.id && !isAnimation && canGo.current && isLoaded) {
-						setIsAnimation(true);
-						setIsLoaded(false);
-						canGo.current = false;
-						handleKeyDown(
-							event,
-							{
-								id: props.id,
-								length: props.images.length,
-								router: router,
-								bigImage: bigImage,
-								styles: styles,
-							},
-							props.tag,
-						);
-						setTimeout(() => {
-							canGo.current = true;
-						}, 1000);
-						// seems to have fixed it but it's a bit of a hack
-						// if you're reading this pls tell me of a better solution
-						// the code seems even worse but it appears to work fully now :)
-					} else {
-						return null;
-					}
-				} else {
-					event.preventDefault();
-				}
-			}}
-			tabIndex={0}
-			role="button"
-		>
-			<button
-				className={styles.button}
-				type="button"
-				onKeyDown={(event) => {
-					if (event.key === "Enter")
-						router.push(`/Art/${props.tag}`, { scroll: false });
-				}}
-			>
-				<Image
-					src="/x.svg"
-					width={50}
-					height={50}
-					alt="close button"
-					onClick={() => router.push(`/Art/${props.tag}`, { scroll: false })}
-				/>
-			</button>
-			<button
-				type="button"
-				className={styles.left}
-				onClick={() => {
-					if (props.id) {
-						handleImageChange({
-							id: props.id,
-							nextPhoto: false,
-							length: props.images.length,
-							router: router,
-							bigImage: bigImage,
-							styles: styles,
-						});
-						setIsAnimation(true);
-					} else {
-						return null;
-					}
-				}}
-			>
-				<Image
-					src="/chevron-left.svg"
-					width={50}
-					height={50}
-					alt="previous photo"
-				/>
-			</button>
-			<button
-				type="button"
-				className={styles.right}
-				onClick={() => {
-					if (props.id) {
-						handleImageChange({
-							id: props.id,
-							nextPhoto: true,
-							length: props.images.length,
-							router: router,
-							bigImage: bigImage,
-							styles: styles,
-						});
-						setIsAnimation(true);
-					} else {
-						return null;
-					}
-				}}
-			>
-				<Image
-					src="/chevron-right.svg"
-					width={50}
-					height={50}
-					alt="next photo"
-				/>
-			</button>
-			{image && (
-				<Image
-					src={image.src}
-					alt={image.alt}
-					width={image.width}
-					height={image.height}
-					style={{
-						width: "100%",
-						height: "auto",
-					}}
-					quality={40}
-					priority={true}
-				/>
-			)}
-		</div>
+		<>
+			<AnimatePresence>
+				{image && (
+					<motion.div
+						initial={false}
+						animate={{ opacity: 1 }}
+						exit={{
+							opacity: 0,
+						}}
+						className={styles.bigImage}
+						ref={bigImage}
+						onKeyDown={(event) => {
+							if (checkKey(event)) {
+								if (props.id) {
+									if (Date.now() - lastSwitch.current < 850) return;
+									lastSwitch.current = Date.now();
+									setIsNext(
+										handleKeyDown(
+											event,
+											{
+												id: props.id,
+												length: props.images.length,
+												router: router,
+												bigImage: bigImage,
+												styles: styles,
+											},
+											props.tag,
+										) || false,
+									);
+								} else {
+									return null;
+								}
+							} else {
+								event.preventDefault();
+							}
+						}}
+						tabIndex={0}
+						role="button"
+					>
+						<button
+							className={styles.button}
+							type="button"
+							onKeyDown={(event) => {
+								if (event.key === "Enter")
+									router.push(`/Art/${props.tag}`, { scroll: false });
+							}}
+						>
+							<Image
+								src="/x.svg"
+								width={50}
+								height={50}
+								alt="close button"
+								onClick={() =>
+									router.push(`/Art/${props.tag}`, { scroll: false })
+								}
+							/>
+						</button>
+						<button
+							type="button"
+							className={styles.left}
+							onClick={() => {
+								if (props.id) {
+									handleImageChange({
+										id: props.id,
+										nextPhoto: false,
+										length: props.images.length,
+										router: router,
+										bigImage: bigImage,
+										styles: styles,
+									});
+									setIsNext(false);
+								} else {
+									return null;
+								}
+							}}
+						>
+							<Image
+								src="/chevron-left.svg"
+								width={50}
+								height={50}
+								alt="previous photo"
+							/>
+						</button>
+						<button
+							type="button"
+							className={styles.right}
+							onClick={() => {
+								if (props.id) {
+									handleImageChange({
+										id: props.id,
+										nextPhoto: true,
+										length: props.images.length,
+										router: router,
+										bigImage: bigImage,
+										styles: styles,
+									});
+									setIsNext(true);
+								} else {
+									return null;
+								}
+							}}
+						>
+							<Image
+								src="/chevron-right.svg"
+								width={50}
+								height={50}
+								alt="next photo"
+							/>
+						</button>
+						<AnimatePresence mode="wait">
+							{image && (
+								<motion.div
+									initial={{
+										translateX: isNext ? "-100%" : "50%",
+										opacity: 0,
+									}}
+									animate={{ translateX: 0, opacity: 1, translateY: 0 }}
+									exit={{
+										translateX: isNext ? "50%" : "-100%",
+										opacity: 0,
+										transition: { duration: 0.6 },
+									}}
+									key={image.id}
+								>
+									<Image
+										src={image.src}
+										alt={image.alt}
+										width={image.width}
+										height={image.height}
+										style={{
+											width: "100%",
+											height: "auto",
+										}}
+										quality={40}
+										priority={true}
+										onLoad={() => {
+											(bigImage.current as HTMLDivElement | null)?.focus();
+										}}
+									/>
+								</motion.div>
+							)}
+						</AnimatePresence>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</>
 	);
 }
