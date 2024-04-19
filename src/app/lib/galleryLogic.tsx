@@ -44,6 +44,21 @@ export function handleKeyDown(
 	}
 }
 
+export function checkKey(event: React.KeyboardEvent) {
+	if (
+		event.key === "Enter" ||
+		event.key === "Escape" ||
+		event.key === "ArrowLeft" ||
+		event.key === "ArrowRight" ||
+		event.key === "Enter" ||
+		event.key === "Tab" ||
+		event.key === "F5"
+	) {
+		return true;
+	}
+	return false;
+}
+
 export const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>

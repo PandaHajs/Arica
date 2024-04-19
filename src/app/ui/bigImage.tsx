@@ -2,7 +2,11 @@ import Image from "next/image";
 import styles from "./styles/bigImage.module.scss";
 import type { bigImageProps, imageType } from "../lib/types";
 import { useRouter } from "next/navigation";
-import { handleImageChange, handleKeyDown } from "../lib/galleryLogic";
+import {
+	handleImageChange,
+	handleKeyDown,
+	checkKey,
+} from "../lib/galleryLogic";
 import { useRef, useState, useEffect } from "react";
 
 export default function BigImage(props: bigImageProps) {
@@ -21,7 +25,6 @@ export default function BigImage(props: bigImageProps) {
 					styles.animationRight,
 					styles.animationLeft,
 				);
-			//console.log("removed", bigImage.current?.classList);
 		} else if (!props.id) {
 			setImage(null);
 			setIsAnimation(false);
@@ -34,46 +37,52 @@ export default function BigImage(props: bigImageProps) {
 				(bigImage.current as HTMLDivElement | null)?.focus();
 				setIsLoaded(true);
 			}}
-			onAnimationStart={() => {
-				//console.log("animation started");
-			}}
 			onAnimationEnd={() => {
 				setIsAnimation(false);
-				//console.log("animation ended");
 			}}
 			ref={bigImage}
 			className={image ? styles.bigImage : styles.hidden}
 			onKeyDown={(event) => {
-				//event.preventDefault();
-				if (props.id && !isAnimation && canGo.current && isLoaded) {
-					setIsAnimation(true);
-					setIsLoaded(false);
-					canGo.current = false;
-					handleKeyDown(
-						event,
-						{
-							id: props.id,
-							length: props.images.length,
-							router: router,
-							bigImage: bigImage,
-							styles: styles,
-						},
-						props.tag,
-					);
-					setTimeout(() => {
-						canGo.current = true;
-					}, 1000);
-					// seems to have fixed it but it's a bit of a hack
-					// if you're reading this pls tell me of a better solution
-					// the code seems even worse but it appears to work fully now :)
+				if (checkKey(event)) {
+					if (props.id && !isAnimation && canGo.current && isLoaded) {
+						setIsAnimation(true);
+						setIsLoaded(false);
+						canGo.current = false;
+						handleKeyDown(
+							event,
+							{
+								id: props.id,
+								length: props.images.length,
+								router: router,
+								bigImage: bigImage,
+								styles: styles,
+							},
+							props.tag,
+						);
+						setTimeout(() => {
+							canGo.current = true;
+						}, 1000);
+						// seems to have fixed it but it's a bit of a hack
+						// if you're reading this pls tell me of a better solution
+						// the code seems even worse but it appears to work fully now :)
+					} else {
+						return null;
+					}
 				} else {
-					return null;
+					event.preventDefault();
 				}
 			}}
 			tabIndex={0}
 			role="button"
 		>
-			<button className={styles.button} type="button">
+			<button
+				className={styles.button}
+				type="button"
+				onKeyDown={(event) => {
+					if (event.key === "Enter")
+						router.push(`/Art/${props.tag}`, { scroll: false });
+				}}
+			>
 				<Image
 					src="/x.svg"
 					width={50}
