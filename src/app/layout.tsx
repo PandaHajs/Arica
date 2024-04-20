@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import "@/app/ui/styles/variables.scss";
-import "@/app/ui/header";
-import Header from "@/app/ui/header";
+import Header from "@/app/ui/header/header";
 import { ProgressBar, ProgressBarProvider } from "react-transition-progress";
 
 const inter = Inter({ subsets: ["latin"] });

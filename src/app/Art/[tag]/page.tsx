@@ -1,8 +1,8 @@
 "use client";
 import styles from "./page.module.scss";
-import Gallery from "@/app/ui/gallery";
+import Gallery from "@/app/ui/galleryParts/gallery";
 import { useState, useEffect } from "react";
-import BigImage from "@/app/ui/bigImage";
+import BigImage from "@/app/ui/galleryParts/bigImage";
 import { useRouter, useSearchParams, useParams } from "next/navigation";
 import type { imageType } from "@/app/lib/types";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";

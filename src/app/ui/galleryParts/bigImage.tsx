@@ -1,12 +1,12 @@
 import Image from "next/image";
-import styles from "./styles/bigImage.module.scss";
-import type { bigImageProps, imageType } from "../lib/types";
+import styles from "../styles/bigImage.module.scss";
+import type { bigImageProps, imageType } from "../../lib/types";
 import { useRouter } from "next/navigation";
 import {
 	handleImageChange,
 	handleKeyDown,
 	checkKey,
-} from "../lib/galleryLogic";
+} from "../../lib/galleryLogic";
 import { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
