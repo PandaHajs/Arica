@@ -44,7 +44,7 @@ export default function RootLayout({
 				<ProgressBarProvider>
 					<Header />
 					{children}
-					<ProgressBar className={"test"} />
+					<ProgressBar className={"progressBar"} />
 				</ProgressBarProvider>
 			</body>
 		</html>

@@ -40,7 +40,7 @@ export default function BigImage(props: bigImageProps) {
 						onKeyDown={(event) => {
 							if (checkKey(event)) {
 								if (props.id) {
-									if (Date.now() - lastSwitch.current < 850) return;
+									if (Date.now() - lastSwitch.current < 1000) return;
 									lastSwitch.current = Date.now();
 									setIsNext(
 										handleKeyDown(
