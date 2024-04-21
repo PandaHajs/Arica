@@ -12,6 +12,7 @@ export default function Home() {
 	const router: AppRouterInstance = useRouter();
 	const id = useSearchParams().get("id");
 	const tag = useParams<{ tag: string }>();
+	const [isTab, setIsTab] = useState(0);
 
 	useEffect(() => {
 		const fetchImages = async () => {
@@ -36,11 +37,21 @@ export default function Home() {
 			{/* biome-ignore lint/a11y/useKeyWithClickEvents: redundant due to how modal is created */}
 			<section
 				className={id ? styles.blur : styles.section}
-				onClick={() =>
-					id ? router.push(`/Art/${tag.tag}`, { scroll: false }) : null
-				}
+				onClick={() => {
+					if (id) {
+						router.push(`/Art/${tag.tag}`, { scroll: false });
+						setIsTab(0);
+					} else {
+						return null;
+					}
+				}}
 			>
-				<Gallery images={images} tag={tag.tag} />
+				<Gallery
+					images={images}
+					tag={tag.tag}
+					isTab={isTab}
+					setIsTab={setIsTab}
+				/>
 			</section>
 
 			<BigImage images={images} id={id} tag={tag.tag} />

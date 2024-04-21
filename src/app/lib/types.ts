@@ -13,6 +13,8 @@ export type imageType = {
 export type galleryProps = {
   images: imageType[];
   tag: string;
+  isTab: number;
+  setIsTab: (value: number) => void;
 };
 
 export type bigImageProps = {

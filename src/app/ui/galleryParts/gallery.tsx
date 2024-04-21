@@ -2,24 +2,12 @@ import styles from "@/app/ui/styles/gallery.module.scss";
 import Image from "next/image";
 import type { galleryProps } from "@/app/lib/types";
 import { shimmer, toBase64 } from "@/app/lib/galleryLogic";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Masonry from "react-responsive-masonry";
 
 export default function Gallery(props: galleryProps) {
 	const images = props.images;
 	const router = useRouter();
-	const [check, setCheck] = useState(0);
-	const searchParams = useSearchParams();
-	const id = searchParams.get("id");
-
-	useEffect(() => {
-		if (id) {
-			setCheck(-1);
-		} else {
-			setCheck(0);
-		}
-	}, [id]);
 
 	return (
 		<section className={styles.gallery}>
@@ -27,13 +15,15 @@ export default function Gallery(props: galleryProps) {
 				{images.map((image) => (
 					<div
 						role="button"
-						tabIndex={check}
+						tabIndex={props.isTab}
 						onClick={() => {
 							router.push(`?id=${image.id}`, { scroll: false });
+							props.setIsTab(-1);
 						}}
 						onKeyDown={(e) => {
 							if (e.key === "Enter")
 								router.push(`?id=${image.id}`, { scroll: false });
+							props.setIsTab(-1);
 						}}
 						key={image.id}
 						className={styles.galleryImage}
