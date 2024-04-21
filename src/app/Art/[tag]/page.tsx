@@ -28,8 +28,11 @@ export default function Home() {
 				console.log(e);
 			}
 		};
-
 		fetchImages();
+
+		if (document.activeElement) {
+			(document.activeElement as HTMLElement).blur();
+		}
 	}, [tag.tag]);
 
 	return (
