@@ -13,6 +13,7 @@ export default function ModelMenu() {
 	const router = useRouter();
 	const [models, setModels] = useState<imageType[]>([]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: This effect should only run once
 	useEffect(() => {
 		const modelID = searchParams.get("modelID");
 		if (!modelID || typeof modelID !== "string") {
@@ -33,7 +34,8 @@ export default function ModelMenu() {
 			}
 		};
 		fetchModels();
-	});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<div className={styles.menu}>
 			<Masonry columnsCount={2}>
