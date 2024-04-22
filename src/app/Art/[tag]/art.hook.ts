@@ -1,4 +1,4 @@
-import { useEffect, useState, } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import type { imageType } from '@/app/lib/types';
 

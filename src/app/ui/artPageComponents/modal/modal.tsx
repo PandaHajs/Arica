@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { handleKeyDown, checkKey } from "../../../lib/galleryLogic";
 import { useRef, useState, useEffect, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { imagesContext } from "@/app/Art/[tag]/page";
+import { imagesContext } from "@/app/Art/[tag]/imagesContext";
 import ModalCloseButton from "./modalCloseButton";
 import ModalButton from "./modalButton";
 

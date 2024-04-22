@@ -1,13 +1,10 @@
 "use client";
 import GallerySection from "@/app/ui/artPageComponents/galleryParts/gallerySection";
 import Modal from "@/app/ui/artPageComponents/modal/modal";
-import type { imageType } from "@/app/lib/types";
-import { createContext } from "react";
+import { imagesContext } from "./imagesContext";
 import { useArt } from "./art.hook";
 
-export const imagesContext = createContext<imageType[]>([]);
-
-export default function Art() {
+function Art() {
 	const { tag, images } = useArt();
 
 	return (
@@ -19,3 +16,5 @@ export default function Art() {
 		</main>
 	);
 }
+
+export default Art;
