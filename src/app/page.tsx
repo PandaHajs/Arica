@@ -13,7 +13,6 @@ export default function Home() {
 					height={600}
 					style={{ width: "100%", height: "auto" }}
 				/>
-
 				<div>
 					<h1>Paulina Bukczyńska</h1>
 					<p>

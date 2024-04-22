@@ -10,25 +10,48 @@ export type imageType = {
   tag?: string;
 };
 
-export type galleryProps = {
+export type modalButtonProps = {
+  id: string | null;
+  isLoaded: boolean;
+  setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
   images: imageType[];
+  setIsNext: (value: boolean) => void;
+  isNext: boolean;
+  router: AppRouterInstance;
+  modal: RefObject<HTMLDivElement>;
+  style:  string;
   tag: string;
-  isTab: number;
-  setIsTab: (value: number) => void;
+  nextPhoto: boolean;
+  styles: {
+    readonly [key: string]: string;
+  }
 };
 
-export type bigImageProps = {
-  images: imageType[];
-  id: string | null;
-  tag: string;
+export type modalCloseButtonProps = {
+	tag: string;
+	router: AppRouterInstance;
+	styles: {
+		readonly [key: string]: string;
+	};
 };
+
+
+export type gallerySectionProps = {
+  tag: string;
+}
+
+export type galleryProps={
+  tag: string;
+  setIsTab: (value: number) => void;
+  isTab: number;
+}
 
 export type changeImageProps = {
   id: string;
   nextPhoto?: boolean;
   length: number;
   router: AppRouterInstance;
-  bigImage: RefObject<HTMLDivElement>;
+  modal: RefObject<HTMLDivElement>;
   styles:  {
     readonly [key: string]: string;
 }
@@ -40,3 +63,4 @@ export type keyDownProps = {
   router: AppRouterInstance;
   tag: string;
 }
+

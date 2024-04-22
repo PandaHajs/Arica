@@ -4,10 +4,12 @@ import type { galleryProps } from "@/app/lib/types";
 import { shimmer, toBase64 } from "@/app/lib/galleryLogic";
 import { useRouter } from "next/navigation";
 import Masonry from "react-responsive-masonry";
+import { useContext } from "react";
+import { imagesContext } from "@/app/Art/[tag]/page";
 
 export default function Gallery(props: galleryProps) {
-	const images = props.images;
 	const router = useRouter();
+	const images = useContext(imagesContext);
 
 	return (
 		<section className={styles.gallery}>

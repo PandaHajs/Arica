@@ -1,63 +1,21 @@
 "use client";
-import styles from "./page.module.scss";
-import Gallery from "@/app/ui/galleryParts/gallery";
-import { useState, useEffect } from "react";
-import BigImage from "@/app/ui/galleryParts/bigImage";
-import { useRouter, useSearchParams, useParams } from "next/navigation";
+import GallerySection from "@/app/ui/artPageComponents/galleryParts/gallerySection";
+import Modal from "@/app/ui/artPageComponents/modal/modal";
 import type { imageType } from "@/app/lib/types";
-import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { createContext } from "react";
+import { useArt } from "./art.hook";
 
-export default function Home() {
-	const [images, setImages] = useState<imageType[]>([]);
-	const router: AppRouterInstance = useRouter();
-	const id = useSearchParams().get("id");
-	const tag = useParams<{ tag: string }>();
-	const [isTab, setIsTab] = useState(0);
+export const imagesContext = createContext<imageType[]>([]);
 
-	useEffect(() => {
-		const fetchImages = async () => {
-			try {
-				const response = await fetch(`/${tag.tag}.json`);
-				if (response) {
-					const { photos } = await response.json();
-					if (photos) {
-						setImages(photos);
-					}
-				}
-			} catch (e) {
-				console.log(e);
-			}
-		};
-		fetchImages();
-
-		if (document.activeElement) {
-			(document.activeElement as HTMLElement).blur();
-		}
-	}, [tag.tag]);
+export default function Art() {
+	const { tag, images } = useArt();
 
 	return (
 		<main>
-			{/* biome-ignore lint/a11y/useKeyWithClickEvents: redundant due to how modal is created */}
-			<section
-				className={id ? styles.blur : styles.section}
-				onClick={() => {
-					if (id) {
-						router.push(`/Art/${tag.tag}`, { scroll: false });
-						setIsTab(0);
-					} else {
-						return null;
-					}
-				}}
-			>
-				<Gallery
-					images={images}
-					tag={tag.tag}
-					isTab={isTab}
-					setIsTab={setIsTab}
-				/>
-			</section>
-
-			<BigImage images={images} id={id} tag={tag.tag} />
+			<imagesContext.Provider value={images}>
+				<GallerySection tag={tag.tag} />
+				<Modal tag={tag.tag} />
+			</imagesContext.Provider>
 		</main>
 	);
 }
