@@ -5,10 +5,14 @@ import { useLoader } from "@react-three/fiber";
 import { Suspense } from "react";
 import { FBXLoader } from "three/examples/jsm/Addons.js";
 import styles from "../styles/model.module.scss";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function Model() {
+	const searchParams = useSearchParams();
+	const modelID = searchParams.get("modelID");
+
 	const Model3D = () => {
-		const fbx = useLoader(FBXLoader, "/wozek.fbx");
+		const fbx = useLoader(FBXLoader, `${modelID}.fbx`);
 		return (
 			<group>
 				<primitive scale={0.02} object={fbx} />

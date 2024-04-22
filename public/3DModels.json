@@ -1,0 +1,19 @@
+{
+    "models": [
+      {
+        "id": "1",
+        "src": "/3D4.jpg",
+        "alt": "Witches' labolatory",
+        "width": "1280",
+        "height": "720"
+      },
+      {
+        "id": "2",
+        "src": "/3D3.jpg",
+        "alt": "Wheelchair",
+        "width": "1280",
+        "height": "720"
+      }
+    ]
+  }
+  

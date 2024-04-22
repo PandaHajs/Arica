@@ -7,7 +7,7 @@ export type imageType = {
   alt: string;
   width: number;
   height: number;
-  tag: string;
+  tag?: string;
 };
 
 export type galleryProps = {
