@@ -1,41 +1,13 @@
 "use client";
-import { useEffect } from "react";
 import styles from "../styles/modelMenu.module.scss";
-import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { shimmer, toBase64 } from "@/app/lib/galleryLogic";
-import { useState } from "react";
-import type { imageType } from "@/app/lib/types";
 import Masonry from "react-responsive-masonry";
+import { useModelMenu } from "./modelMenu.hook";
 
 export default function ModelMenu() {
-	const searchParams = useSearchParams();
-	const router = useRouter();
-	const [models, setModels] = useState<imageType[]>([]);
+	const { models, router } = useModelMenu();
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: This effect should only run once
-	useEffect(() => {
-		const modelID = searchParams.get("modelID");
-		if (!modelID || typeof modelID !== "string") {
-			router.push("?modelID=1");
-		}
-
-		const fetchModels = async () => {
-			try {
-				const response = await fetch("/3DModels.json");
-				if (response) {
-					const { models } = await response.json();
-					if (models) {
-						setModels(models);
-					}
-				}
-			} catch (e) {
-				console.log(e);
-			}
-		};
-		fetchModels();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 	return (
 		<div className={styles.menu}>
 			<Masonry columnsCount={2}>

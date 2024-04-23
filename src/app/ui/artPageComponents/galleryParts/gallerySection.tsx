@@ -1,13 +1,14 @@
 import Gallery from "./gallery";
 import styles from "@/app/ui/styles/gallery.module.scss";
-import type { gallerySectionProps } from "@/app/lib/types";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { imagesContext } from "@/app/Art/[tag]/imagesContext";
 
-export default function GallerySection(props: gallerySectionProps) {
+export default function GallerySection() {
 	const [isTab, setIsTab] = useState(0);
 	const router = useRouter();
 	const id = useSearchParams().get("id");
+	const { tag } = useContext(imagesContext);
 
 	return (
 		<>
@@ -16,14 +17,14 @@ export default function GallerySection(props: gallerySectionProps) {
 				className={id ? styles.blur : styles.section}
 				onClick={() => {
 					if (id) {
-						router.push(`/Art/${props.tag}`, { scroll: false });
+						router.push(`/Art/${tag}`, { scroll: false });
 						setIsTab(0);
 					} else {
 						return null;
 					}
 				}}
 			>
-				<Gallery tag={props.tag} setIsTab={setIsTab} isTab={isTab} />
+				<Gallery setIsTab={setIsTab} isTab={isTab} />
 			</section>
 		</>
 	);

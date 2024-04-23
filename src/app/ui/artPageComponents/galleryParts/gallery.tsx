@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { imagesContext } from "@/app/Art/[tag]/imagesContext";
 export default function Gallery(props: galleryProps) {
 	const router = useRouter();
-	const images = useContext(imagesContext);
+	const { images } = useContext(imagesContext);
 
 	return (
 		<section className={styles.gallery}>

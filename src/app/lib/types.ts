@@ -1,5 +1,6 @@
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import type { RefObject } from "react";
+import type React from "react";
 
 export type imageType = {
   id: string;
@@ -7,7 +8,7 @@ export type imageType = {
   alt: string;
   width: number;
   height: number;
-  tag?: string;
+  tag: string;
 };
 
 export type modalButtonProps = {
@@ -35,13 +36,7 @@ export type modalCloseButtonProps = {
 	};
 };
 
-
-export type gallerySectionProps = {
-  tag: string;
-}
-
 export type galleryProps={
-  tag: string;
   setIsTab: (value: number) => void;
   isTab: number;
 }
@@ -64,3 +59,20 @@ export type keyDownProps = {
   tag: string;
 }
 
+export type modalImageProps = {
+  image: imageType | null | undefined;
+  style: string;
+  modal: RefObject<HTMLDivElement>;
+  setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoaded: boolean;
+  id: string | null;
+  images: imageType[];
+  setIsNext: (value: boolean) => void;
+  router: AppRouterInstance;
+  styles: {
+      readonly [key: string]: string;
+  };
+  tag: string;
+  isNext: boolean;
+  children: React.ReactNode,
+}
