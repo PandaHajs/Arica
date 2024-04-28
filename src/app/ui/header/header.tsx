@@ -1,6 +1,7 @@
 import { Link } from "react-transition-progress/next";
 import styles from "@/app/ui/styles/header.module.scss";
 import DropDown from "./dropDown";
+import CVLink from "./CVLink";
 
 export default function Header() {
 	return (
@@ -12,7 +13,7 @@ export default function Header() {
 					<p>Art</p>
 					<DropDown />
 				</div>
-				<Link href="/">CV</Link>
+				<CVLink/>
 				<Link href="/Models">3D Models</Link>
 			</nav>
 		</header>
