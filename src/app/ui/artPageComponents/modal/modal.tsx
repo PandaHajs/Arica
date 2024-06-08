@@ -55,7 +55,7 @@ export default function Modal() {
 	useEffect(() => {
 		if (id) {
 			setImage(images.find((image) => image.id === id));
-		} else if (!id) {
+		} else {
 			setImage(null);
 		}
 	}, [id, images]);
