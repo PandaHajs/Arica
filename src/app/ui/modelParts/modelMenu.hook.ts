@@ -24,7 +24,7 @@ const searchParams = useSearchParams();
                     }
                 }
             } catch (e) {
-                console.log(e);
+                throw new Error(String(e));
             }
         };
         fetchModels();

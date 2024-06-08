@@ -13,8 +13,8 @@ export default function GallerySection() {
 	return (
 		<>
 			{/* biome-ignore lint/a11y/useKeyWithClickEvents: redundant due to how modal is created */}
-			<section
-				className={id ? styles.blur : styles.section}
+			<div
+				className={id ? styles.blur : undefined}
 				onClick={() => {
 					if (id) {
 						router.push(`/Art/${tag}`, { scroll: false });
@@ -24,8 +24,10 @@ export default function GallerySection() {
 					}
 				}}
 			>
-				<Gallery setIsTab={setIsTab} isTab={isTab} />
-			</section>
+				<section className={styles.section}>
+					<Gallery setIsTab={setIsTab} isTab={isTab} />
+				</section>
+			</div>
 		</>
 	);
 }

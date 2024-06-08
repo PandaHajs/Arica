@@ -43,7 +43,6 @@ export default function ModalImage(props: modalImageProps) {
 						tabIndex={0}
 						role="button"
 					>
-						{props.children}
 						<AnimatePresence mode="wait">
 							<motion.div
 								initial={{
@@ -58,6 +57,7 @@ export default function ModalImage(props: modalImageProps) {
 								}}
 								key={props.image.id}
 							>
+								{props.children}
 								{props.image && (
 									<Image
 										src={props.image.src}

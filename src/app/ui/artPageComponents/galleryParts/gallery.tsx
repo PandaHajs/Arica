@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Masonry from "react-responsive-masonry";
 import { useContext } from "react";
 import { imagesContext } from "@/app/Art/[tag]/imagesContext";
+
 export default function Gallery(props: galleryProps) {
 	const router = useRouter();
 	const { images } = useContext(imagesContext);
@@ -43,6 +44,18 @@ export default function Gallery(props: galleryProps) {
 							placeholder={`data:image/svg+xml;base64,${toBase64(
 								shimmer(700, 475),
 							)}`}
+							className={styles.image}
+						/>
+						<Image
+							src="/expand.svg"
+							alt="expand"
+							width={50}
+							height={50}
+							style={{
+								width: "10%",
+								height: "auto",
+							}}
+							className={styles.expand}
 						/>
 					</div>
 				))}

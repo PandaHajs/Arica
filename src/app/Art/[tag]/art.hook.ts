@@ -17,7 +17,7 @@ useEffect(() => {
                 }
             }
         } catch (e) {
-            console.log(e);
+            throw new Error(String(e));
         }
     };
     fetchImages();

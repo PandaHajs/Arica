@@ -11,9 +11,36 @@
   }
 
   .galleryImage {
+    position: relative;
     cursor: pointer;
     user-select: none;
     border: none;
+    padding: 0;
+
+    .expand {
+      position: fixed;
+      scale: 0;
+    }
+  }
+
+  .galleryImage:hover {
+
+
+
+    .image {
+      filter: blur(2px);
+      transition: 0.5s;
+    }
+
+    .expand {
+      transition: 0.5s;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 3;
+      filter: invert(1);
+      scale: 1;
+    }
   }
 }
 
@@ -23,20 +50,20 @@
   align-items: center;
   flex-direction: column;
   min-height: 92vh;
+  z-index: 1;
 }
 
 .blur {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: hsla(0, 0%, 0%, 0.5);
+  background: transparent;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
   position: relative;
   min-height: 92vh;
-
   filter: blur(5px);
+
+  .galleryImage:hover .expand {
+    scale: 0;
+  }
 
   img {
     cursor: default;
