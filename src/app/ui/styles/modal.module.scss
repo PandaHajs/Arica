@@ -1,9 +1,10 @@
 .modal {
   position: fixed;
   user-select: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
   z-index: 3;
   outline: none;
 
@@ -75,5 +76,16 @@
   .right {
     right: 0;
     justify-content: flex-end;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal {
+    >div {
+      >img {
+        max-width: 95vw;
+        max-height: 70vh;
+      }
+    }
   }
 }
