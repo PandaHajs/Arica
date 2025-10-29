@@ -6,6 +6,7 @@ import { imagesContext } from "@/app/Art/[tag]/imagesContext";
 import ModalCloseButton from "./modalCloseButton";
 import ModalButton from "./modalButton";
 import ModalImage from "./modalImage";
+import ModalInfo from "./modalInfo";
 
 export default function Modal() {
   const router = useRouter();
@@ -52,6 +53,11 @@ export default function Modal() {
     styles: styles,
   };
 
+  const modalInfoProps = {
+    description: image ? image.alt : "",
+    styles: styles,
+  };
+
   useEffect(() => {
     if (id) {
       setImage(images.find((image) => image.id === id));
@@ -63,6 +69,7 @@ export default function Modal() {
   return (
     <ModalImage {...modalImageProps}>
       <ModalCloseButton tag={tag} router={router} styles={styles} />
+      <ModalInfo {...modalInfoProps} />
       <ModalButton {...modalPreviousButtonProps} />
       <ModalButton {...modalNextButtonProps} />
     </ModalImage>

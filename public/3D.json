@@ -39,6 +39,30 @@
       "width": "1228",
       "height": "690",
       "tag": "3D"
+    },
+    {
+      "id": "6",
+      "src": "/3D6.png",
+      "alt": "3D model of glowing stones in a forest",
+      "width": "1920",
+      "height": "1090",
+      "tag": "3D"
+    },
+    {
+      "id": "7",
+      "src": "/3D7.png",
+      "alt": "3D model of a creepy room",
+      "width": "1920",
+      "height": "1080",
+      "tag": "3D"
+    },
+    {
+      "id": "8",
+      "src": "/3D8.jpg",
+      "alt": "3D model of a mermaid sitting on a rock",
+      "width": "1482",
+      "height": "920",
+      "tag": "3D"
     }
   ]
 }

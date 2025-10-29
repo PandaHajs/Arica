@@ -7,12 +7,39 @@
   .section {
     display: flex;
     max-width: 40%;
+    justify-content: center;
 
     >img {
-      max-width: 10vw;
       border-radius: 100%;
       margin: 0 3rem;
-      min-width: 10vw;
+      max-width: 200px;
+      max-height: 200px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    height: auto;
+
+    .section {
+      max-width: 80%;
+      margin: 2rem 0;
+
+      >img {
+        max-width: 150px;
+        max-height: 150px;
+        margin: 0 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    .section {
+      flex-wrap: wrap;
     }
   }
 }

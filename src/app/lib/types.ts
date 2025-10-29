@@ -20,26 +20,26 @@ export type modalButtonProps = {
   isNext: boolean;
   router: AppRouterInstance;
   modal: RefObject<HTMLDivElement>;
-  style:  string;
+  style: string;
   tag: string;
   nextPhoto: boolean;
   styles: {
     readonly [key: string]: string;
-  }
+  };
 };
 
 export type modalCloseButtonProps = {
-	tag: string;
-	router: AppRouterInstance;
-	styles: {
-		readonly [key: string]: string;
-	};
+  tag: string;
+  router: AppRouterInstance;
+  styles: {
+    readonly [key: string]: string;
+  };
 };
 
-export type galleryProps={
+export type galleryProps = {
   setIsTab: (value: number) => void;
   isTab: number;
-}
+};
 
 export type changeImageProps = {
   id: string;
@@ -47,9 +47,9 @@ export type changeImageProps = {
   length: number;
   router: AppRouterInstance;
   modal: RefObject<HTMLDivElement>;
-  styles:  {
+  styles: {
     readonly [key: string]: string;
-}
+  };
 };
 
 export type keyDownProps = {
@@ -57,7 +57,7 @@ export type keyDownProps = {
   length: number;
   router: AppRouterInstance;
   tag: string;
-}
+};
 
 export type modalImageProps = {
   image: imageType | null | undefined;
@@ -70,9 +70,16 @@ export type modalImageProps = {
   setIsNext: (value: boolean) => void;
   router: AppRouterInstance;
   styles: {
-      readonly [key: string]: string;
+    readonly [key: string]: string;
   };
   tag: string;
   isNext: boolean;
-  children: React.ReactNode,
-}
+  children: React.ReactNode;
+};
+
+export type modalInfoProps = {
+  description: string;
+  styles: {
+    readonly [key: string]: string;
+  };
+};
