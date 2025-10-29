@@ -7,10 +7,10 @@ export default function Home() {
     <main className={styles.main}>
       <section className={styles.section}>
         <Image
-          src="/Makima.jpg"
+          src="/mikser.jpg"
           alt="To na pewno ja"
-          width={923}
-          height={923}
+          width={2304}
+          height={2304}
           style={{ width: "100%", height: "auto" }}
         />
         <div>
