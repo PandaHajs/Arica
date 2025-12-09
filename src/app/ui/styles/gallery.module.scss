@@ -14,8 +14,13 @@
     position: relative;
     cursor: pointer;
     user-select: none;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     padding: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--card);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 
     .expand {
       position: fixed;
@@ -24,22 +29,24 @@
   }
 
   .galleryImage:hover {
-
-
+    transform: translateY(-6px);
+    border-color: var(--stroke);
+    box-shadow: var(--glow);
 
     .image {
-      filter: blur(2px);
-      transition: 0.5s;
+      filter: saturate(1.05) brightness(1.02);
+      transition: 0.35s ease;
     }
 
     .expand {
-      transition: 0.5s;
+      transition: 0.35s ease;
       position: absolute;
       top: 50%;
       left: 50%;
       z-index: 3;
-      filter: invert(1);
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
       scale: 1;
+      transform: translate(-50%, -50%);
     }
   }
 }
@@ -51,6 +58,7 @@
   flex-direction: column;
   min-height: 92vh;
   z-index: 1;
+  padding: 2vh 2vw;
 }
 
 .blur {

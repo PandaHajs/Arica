@@ -5,6 +5,7 @@
   width: 40vw;
   border-collapse: separate;
   z-index: 1;
+  gap: 0.75rem;
 
   >a {
     margin: 15px 5px 10px 10px;
@@ -12,18 +13,28 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    border-radius: 15px;
-    transition-duration: 0.25s;
-    filter: invert(1);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, rgba(255, 79, 195, 0.32), rgba(219, 11, 94, 0.35));
+    transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, filter 180ms ease;
+
+    img {
+      filter: invert(1) brightness(1.4) contrast(1.05);
+      width: 32px;
+      height: 32px;
+    }
   }
 
   >a:nth-of-type(1) {
     margin: 15px 5px 10px 0;
-    border-radius: 5px;
   }
 
   >a:hover {
-    background-color: #b6b6b1;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--glow);
+    background: linear-gradient(145deg, rgba(255, 79, 195, 0.42), rgba(219, 11, 94, 0.44));
+    filter: drop-shadow(0 10px 25px rgba(219, 11, 94, 0.35));
   }
 }
 

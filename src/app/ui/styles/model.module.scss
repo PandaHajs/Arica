@@ -2,5 +2,9 @@
     height: 100%;
     width: 50%;
     margin-top: 5vh;
-    border: 2px solid red;
+    border: 1px solid var(--stroke);
+    border-radius: 16px;
+    background: var(--card);
+    box-shadow: var(--glow);
+    padding: 1rem;
 }

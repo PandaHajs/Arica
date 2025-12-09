@@ -1,6 +1,12 @@
 :root {
-  --color1: #1f2031;
-  --color2: rgb(60, 7, 83);
-  --color3: rgb(114, 4, 85);
-  --color4: rgb(145, 10, 103);
+  --black: #08060a;
+  --black-soft: #0f0b15;
+  --pink: #ff4fc3;
+  --bright-red: #db0b5e;
+  --white: #f8f7fb;
+  --muted: #c7c3d9;
+  --glass: rgba(255, 255, 255, 0.08);
+  --card: linear-gradient(145deg, rgba(11, 7, 17, 0.92), rgba(18, 11, 24, 0.86));
+  --stroke: rgba(219, 11, 94, 0.55);
+  --glow: 0 10px 35px rgba(219, 11, 94, 0.28);
 }
