@@ -1,10 +1,36 @@
 .model {
-    height: 100%;
-    width: 50%;
-    margin-top: 5vh;
-    border: 1px solid var(--stroke);
-    border-radius: 16px;
-    background: var(--card);
-    box-shadow: var(--glow);
+    flex: 1 1 52%;
+    width: 100%;
+    min-height: min(72vh, 720px);
+    border: 1px solid var(--frame);
+    border-radius: var(--radius-lg);
+    background:
+        radial-gradient(circle at 18% 18%, rgba(255, 79, 195, 0.07), transparent 60%),
+        radial-gradient(circle at 85% 85%, rgba(219, 11, 94, 0.055), transparent 65%),
+        rgba(255, 255, 255, 0.03);
+    box-shadow: var(--shadow-soft);
     padding: 1rem;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 45%),
+            radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.03), transparent 55%);
+        opacity: 0.85;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+        z-index: 1;
+    }
 }

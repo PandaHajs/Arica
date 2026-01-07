@@ -1,5 +1,5 @@
 .gallery {
-  margin-top: 5vh;
+  margin-top: clamp(1.25rem, 4vh, 3rem);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -7,20 +7,43 @@
   >div {
     display: flex;
     justify-content: center;
-    max-width: 75vw;
+    max-width: min(1100px, 86vw);
   }
 
   .galleryImage {
     position: relative;
     cursor: pointer;
     user-select: none;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--frame);
     padding: 0;
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
-    background: var(--card);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3);
+    background:
+      radial-gradient(circle at 20% 15%, rgba(255, 79, 195, 0.08), transparent 55%),
+      radial-gradient(circle at 85% 85%, rgba(219, 11, 94, 0.06), transparent 60%),
+      rgba(255, 255, 255, 0.03);
+    box-shadow: var(--shadow-soft);
     transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 40%),
+        radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.03), transparent 50%),
+        radial-gradient(circle at 90% 90%, rgba(0, 0, 0, 0.18), transparent 55%);
+      opacity: 0.85;
+      z-index: 1;
+    }
+
+    .image {
+      display: block;
+      position: relative;
+      z-index: 0;
+      border-radius: 0;
+    }
 
     .expand {
       position: fixed;
@@ -30,11 +53,11 @@
 
   .galleryImage:hover {
     transform: translateY(-6px);
-    border-color: var(--stroke);
+    border-color: var(--frame-strong);
     box-shadow: var(--glow);
 
     .image {
-      filter: saturate(1.05) brightness(1.02);
+      filter: saturate(1.03) contrast(1.01) brightness(1.02);
       transition: 0.35s ease;
     }
 
@@ -58,7 +81,7 @@
   flex-direction: column;
   min-height: 92vh;
   z-index: 1;
-  padding: 2vh 2vw;
+  padding: clamp(1.25rem, 3vh, 2.5rem) 5vw;
 }
 
 .blur {

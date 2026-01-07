@@ -5,13 +5,19 @@
 }
 
 body {
-  background: radial-gradient(circle at 20% 20%, rgba(255, 79, 195, 0.07), transparent 32%),
-    radial-gradient(circle at 80% 0%, rgba(219, 11, 94, 0.08), transparent 28%),
-    linear-gradient(145deg, var(--black), var(--black-soft));
-  color: var(--white);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 79, 195, 0.08), transparent 42%),
+    radial-gradient(circle at 82% 12%, rgba(219, 11, 94, 0.075), transparent 44%),
+    radial-gradient(circle at 70% 90%, rgba(255, 79, 195, 0.045), transparent 52%),
+    linear-gradient(165deg, var(--black), var(--black-soft));
+  color: var(--ink);
   min-height: 100vh;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   a {
     color: var(--white);
@@ -23,6 +29,74 @@ body {
     color: var(--pink);
     opacity: 0.92;
   }
+}
+
+main {
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--white);
+}
+
+p {
+  color: var(--ink-muted);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 79, 195, 0.09), transparent 58%),
+    radial-gradient(circle at -10% 70%, rgba(219, 11, 94, 0.06), transparent 58%),
+    radial-gradient(circle at 110% 60%, rgba(255, 79, 195, 0.055), transparent 62%),
+    radial-gradient(circle at 50% 120%, rgba(0, 0, 0, 0.6), transparent 68%);
+  mix-blend-mode: normal;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    url("/floral-contours.svg"),
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.022), transparent 22%),
+    radial-gradient(circle at 38% 62%, rgba(255, 255, 255, 0.02), transparent 24%),
+    radial-gradient(circle at 72% 28%, rgba(255, 255, 255, 0.018), transparent 26%),
+    radial-gradient(circle at 88% 78%, rgba(255, 255, 255, 0.016), transparent 24%),
+    radial-gradient(circle at 22% 86%, rgba(255, 255, 255, 0.016), transparent 30%),
+    radial-gradient(circle at 58% 12%, rgba(255, 255, 255, 0.015), transparent 30%),
+    radial-gradient(circle at 46% 42%, rgba(255, 79, 195, 0.022), transparent 32%),
+    radial-gradient(circle at 66% 66%, rgba(219, 11, 94, 0.02), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.24), transparent 60%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.62;
+  filter: blur(0.45px);
+}
+
+body>* {
+  position: relative;
+  z-index: 1;
+}
+
+* :focus-visible {
+  outline: 2px solid rgba(255, 79, 195, 0.5);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+::selection {
+  background: rgba(255, 79, 195, 0.22);
+  color: var(--white);
 }
 
 .progressBar {

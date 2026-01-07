@@ -9,4 +9,16 @@
   --card: linear-gradient(145deg, rgba(11, 7, 17, 0.92), rgba(18, 11, 24, 0.86));
   --stroke: rgba(219, 11, 94, 0.55);
   --glow: 0 10px 35px rgba(219, 11, 94, 0.28);
+
+  /* Derived tokens (same palette, different vibe) */
+  --paper: rgba(255, 255, 255, 0.035);
+  --paper-strong: rgba(255, 255, 255, 0.055);
+  --ink: rgba(248, 247, 251, 0.92);
+  --ink-muted: rgba(199, 195, 217, 0.88);
+  --frame: rgba(255, 255, 255, 0.075);
+  --frame-strong: rgba(219, 11, 94, 0.6);
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --shadow-soft: 0 18px 46px rgba(0, 0, 0, 0.45);
+  --glow-soft: 0 18px 54px rgba(219, 11, 94, 0.18);
 }

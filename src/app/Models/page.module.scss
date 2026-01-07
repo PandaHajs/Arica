@@ -2,6 +2,15 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 87vh;
+  min-height: calc(100vh - 72px);
   justify-content: space-between;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  padding: clamp(1.25rem, 3vh, 2.5rem) 5vw;
+}
+
+@media (max-width: 980px) {
+  .main {
+    flex-direction: column;
+    min-height: auto;
+  }
 }
